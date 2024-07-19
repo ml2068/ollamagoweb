@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/all.min.css"/>
+    <link rel="stylesheet" href="/static/css/default.min.css"/>
+    <link rel="stylesheet" href="/static/css/styles.css"/>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.min.js" ></script>
+    <script src="/static/js/highlight.min.js"></script>
+    <script src="/static/js/showdown.min.js"></script>   
+    <script src="/static/js/autosize.min.js"></script>        
+  </head>
+  <body>
+    <div class="chat-container pb-5 pt-0 h-100 d-flex flex-column position-relative">
+      <div class="logo-wrapper row">
+        <img
+          class="js-logo logo"
+          src="/static/logo.png"
+          alt="Logo"/>
+      </div>
+
+      <div class="border printout-wrapper border-0">
+        <div id="printout" class="printout"></div>
+      </div>
+
+      <div class="position-sticky bottom-0 mt-auto bg-white">
+        <div class="main-controls">
+          <form>
+            <div
+              id="input-group"
+              class="position-relative prompt-input-wrapper">
+              <textarea
+                class="form-control prompt-input"
+                placeholder="Ask your question here (Ctrl + Enter to send)"
+                id="prompt"></textarea>
+            </div>
+            <type="submit"  class="btn btn-primary btn-send" onclick="send(event)">Send</button>
+          </form>
+			
+        </div>  
+      </div>
+
+    </div>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
