@@ -18,14 +18,20 @@ You can download various LLM models from https://www.ollama.com
 
 # edit .env 
 You can setting the port and llm by edit the .env file
+
 PORT=1102
+
 llm=codellama:latest
 
 # run the servcie
 cd ollamagoweb
+
 ./go run main.go
 
 # build the .exe
+
 cd ollamagoweb
+
 ./go build main.go
+
 ./main
