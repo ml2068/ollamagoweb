@@ -24,14 +24,14 @@ You can setting the port and llm by edit the .env file
 `llm=codellama:latest`
 
 # run the servcie
-cd ollamagoweb
+`cd ollamagoweb`
 
-./go run main.go
+`go run main.go`
 
 # build the .exe
 
-cd ollamagoweb
+`cd ollamagoweb`
 
-./go build main.go
+`go build main.go`
 
-./main
+`./main`
