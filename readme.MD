@@ -35,3 +35,5 @@ You can setting the port and llm by edit the .env file
 `go build main.go`
 
 `./main`
+# Groq support
+<img src="GroqGoWeb/groqfast.png" alt="Groq go fast" width="60%"/>
