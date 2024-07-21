@@ -46,6 +46,16 @@ replace file as below:
 
 ./static/logo.png
 
+edit the .env file:
+
+PORT=1102
+
+llm=llama3-8b-8192
+
+baseUrl=https://api.groq.com/openai/v1
+
+apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H
+
 and run 
 
 `go run main.go`
