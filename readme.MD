@@ -37,10 +37,16 @@ You can setting the port and llm by edit the .env file
 `./main`
 # Groq support
 <img src="GroqGoWeb/groqfast.png" alt="Groq go fast" width="60%"/>
+
 replace file as below:
+
 ./main.go
+
 ./.env
+
 ./static/logo.png
+
 and run 
+
 `go run main.go`
 
