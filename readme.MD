@@ -40,21 +40,21 @@ You can setting the port and llm by edit the .env file
 
 replace file as below:
 
-./main.go
+`./main.go`
 
-./.env
+`./.env`
 
-./static/logo.png
+`./static/logo.png`
 
 edit the .env file:
 
-PORT=1102
+`PORT=1102`
 
-llm=llama3-8b-8192
+`llm=llama3-8b-8192`
 
-baseUrl=https://api.groq.com/openai/v1
+`baseUrl=https://api.groq.com/openai/v1`
 
-apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H
+`apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H`
 
 and run 
 
