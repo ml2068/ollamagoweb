@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"text/template"
@@ -24,6 +25,14 @@ func init() {
 }
 
 func main() {
+	//get VPS ip adress 
+	conn, error := net.Dial("udp", "8.8.8.8:80")  
+    	if error != nil {  
+    	log.Fatal("error")
+    	}	  
+    	defer conn.Close()  
+    	ipAddress:=conn.LocalAddr().(*net.UDPAddr).IP 
+	
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Handle("/static/*", http.StripPrefix("/static",
@@ -31,7 +40,7 @@ func main() {
 	r.Get("/", index)
 	r.Post("/run", run)
 	log.Println("\033[93mOllamagoweb started. Press CTRL+C to quit.\033[0m")
-	log.Println("Local URL: http://localhost:"+os.Getenv("PORT"))
+	log.Printf("URL:%s:"+os.Getenv("PORT"),ipAddress)
 	http.ListenAndServe(":"+os.Getenv("PORT"), r)
 }
 
