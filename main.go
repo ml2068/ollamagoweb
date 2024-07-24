@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"text/template"
+	"fmt"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -68,4 +69,6 @@ func run(w http.ResponseWriter, r *http.Request) {
 			f.Flush()
 			return nil
 		}), llms.WithMaxTokens(4096), llms.WithTemperature(0.5))
+	value := os.Getenv("llm")
+    	fmt.Fprint(w, "("+value+")")
 }
