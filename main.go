@@ -54,7 +54,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	llm, err := ollama.New(ollama.WithModel(os.Getenv("llm")))
+	llm, err := ollama.New(ollama.WithModel(os.Getenv("llm")),ollama.WithKeepAlive("60s"))
 	if err != nil {
 		log.Println("Cannot create local LLM:", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
