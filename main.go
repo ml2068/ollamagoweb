@@ -7,8 +7,7 @@ import (
 	"net/http"
 	"os"
 	"text/template"
-	"fmt"
-
+	
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/joho/godotenv"
@@ -38,8 +37,12 @@ func main() {
 
 // index
 func index(w http.ResponseWriter, r *http.Request) {
+	llm := os.Getenv("llm")
 	t, _ := template.ParseFiles("static/index.html")
-	t.Execute(w, nil)
+	err := t.Execute(w, map[string]string{"llm":llm})  
+    	if err != nil {
+        	log.Println(err)
+    	}
 }
 
 // call the LLM and return the response
