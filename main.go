@@ -7,12 +7,10 @@ import (
 	"net/http"
 	"os"
 	"text/template"
-	
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/joho/godotenv"
-	"github.com/tmc/langchaingo/llms"
-	"github.com/tmc/langchaingo/llms/ollama"
+	"github.com/ollama/ollama/api"
 )
 
 // initialise to load environment variable from .env file
@@ -35,7 +33,7 @@ func main() {
 	http.ListenAndServe(":"+os.Getenv("PORT"), r)
 }
 
-// index
+// index.html
 func index(w http.ResponseWriter, r *http.Request) {
 	llm := os.Getenv("llm")
 	t, _ := template.ParseFiles("static/index.html")
@@ -56,20 +54,31 @@ func run(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
-	llm, err := ollama.New(ollama.WithModel(os.Getenv("llm")),ollama.WithKeepAlive("60s"))
+	
+	client, err := api.ClientFromEnvironment()
 	if err != nil {
-		log.Println("Cannot create local LLM:", err.Error())
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		log.Fatal(err)
 	}
+
+	ctx := context.Background()
 
 	w.Header().Add("mime-type", "text/event-stream")
 	f := w.(http.Flusher)
-	llm.Call(context.Background(), prompt.Input,
-		llms.WithStreamingFunc(func(ctx context.Context, chunk []byte) error {
-			w.Write(chunk)
-			f.Flush()
-			return nil
-		}), llms.WithMaxTokens(4096), llms.WithTemperature(0.5))
+	
+	req := &api.GenerateRequest{
+		Model:  os.Getenv("llm"),
+		Prompt:prompt.Input,
+	}
+
+	respFunc := func(resp api.GenerateResponse) error {
+		c := []byte(resp.Response)
+		w.Write(c)
+		f.Flush()
+		return nil
+	}
+	err = client.Generate(ctx, req, respFunc)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
