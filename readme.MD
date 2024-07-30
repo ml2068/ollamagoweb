@@ -26,6 +26,8 @@ You can setting the port and llm by edit the .env file
 # run the servcie
 `cd ollamagoweb`
 
+`go mod tidy`
+
 `go run main.go`
 
 # build the .exe
