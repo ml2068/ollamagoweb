@@ -68,6 +68,11 @@ func run(w http.ResponseWriter, r *http.Request) {
 	req := &api.GenerateRequest{
 		Model:  os.Getenv("llm"),
 		Prompt:prompt.Input,
+		Options: map[string]interface{}{
+			"Seed ": 5,
+			"Temperature":0.1,
+			//other options please check ollama doc
+		},
 	}
 
 	respFunc := func(resp api.GenerateResponse) error {
