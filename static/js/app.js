@@ -20,21 +20,20 @@ function send(e){
     window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     runScript(prompt);          
     $(".js-logo").addClass("active");
-}
+};
 
 const btnSave = document.getElementById('btnSave');
 btnSave.addEventListener("click", () => {
 const txt = document.getElementById('printout').innerHTML;
-converter.makeHtml(txt)
-hljs.highlightAll(txt);
 const blob = new Blob([txt], {type: "text/html"});
 const url = URL.createObjectURL(blob);
 const ele = document.createElement("A");
 ele.href = url;
-ele.download = "llmfile.html";
+ele.download = "the file.html";
 ele.click();
 setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
+
 
 $(document).ready(function(){  
     $('#prompt').keypress(function(event){        
