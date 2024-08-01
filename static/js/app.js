@@ -22,6 +22,17 @@ function send(e){
     $(".js-logo").addClass("active");
 }
 
+function printpage() { 
+  hljs.highlightAll();
+  let printContent = document.getElementById("printContent").innerHTML;
+  let printWindow = window.open('', '_blank');
+  printWindow.document.write(printContent);
+  printWindow.document.close();
+  printWindow.print();
+  printWindow.close();
+  return false; 
+} 
+
 $(document).ready(function(){  
     $('#prompt').keypress(function(event){        
         var keycode = (event.keyCode ? event.keyCode : event.which);
