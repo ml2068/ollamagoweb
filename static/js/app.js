@@ -22,16 +22,19 @@ function send(e){
     $(".js-logo").addClass("active");
 }
 
-function printpage() { 
-  hljs.highlightAll();
-  let printContent = document.getElementById("printContent").innerHTML;
-  let printWindow = window.open('', '_blank');
-  printWindow.document.write(printContent);
-  printWindow.document.close();
-  printWindow.print();
-  printWindow.close();
-  return false; 
-} 
+const btnSave = document.getElementById('btnSave');
+btnSave.addEventListener("click", () => {
+const txt = document.getElementById('printout').innerHTML;
+converter.makeHtml(txt)
+hljs.highlightAll(txt);
+const blob = new Blob([txt], {type: "text/html"});
+const url = URL.createObjectURL(blob);
+const ele = document.createElement("A");
+ele.href = url;
+ele.download = "llmfile.html";
+ele.click();
+setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
 
 $(document).ready(function(){  
     $('#prompt').keypress(function(event){        
