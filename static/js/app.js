@@ -22,16 +22,15 @@ function send(e){
     $(".js-logo").addClass("active");
 };
 
-const btnSave = document.getElementById('btnSave');
-btnSave.addEventListener("click", () => {
-const txt = document.getElementById('printout').innerHTML;
-const blob = new Blob([txt], {type: "text/html"});
-const url = URL.createObjectURL(blob);
-const ele = document.createElement("A");
-ele.href = url;
-ele.download = "the file.html";
-ele.click();
-setTimeout(() => URL.revokeObjectURL(url), 1000);
+document.getElementById("btnSave").addEventListener("click", () => {
+    const txt = document.getElementById('printout').innerHTML;
+    const blob = new Blob([txt], {type: "text/html"});
+    const url = URL.createObjectURL(blob);
+    const ele = document.createElement("A");
+    ele.href = url;
+    ele.download = "llm_coversation.html";
+    ele.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
 
