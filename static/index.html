@@ -21,10 +21,13 @@
           class="js-logo logo"
           src="/static/logo.png"
           alt="Logo"/>
+	  <div>{{.llm}}</div>
+	  <div><button style="margin: 20px;" class="btn btn-primary float-end " onclick="printpage()">Save as PDF</button></div>
       </div>
-      <div>{{.llm}}</div>
       <div class="border printout-wrapper border-0">
-        <div id="printout" class="printout"></div>
+	<div id="printContent">      
+       	  <div id="printout" class="printout"></div>
+	</div> 	
       </div>
 
       <div class="position-sticky bottom-0 mt-auto bg-white">
