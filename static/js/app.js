@@ -23,12 +23,14 @@ function send(e){
 };
 
 document.getElementById("btnSave").addEventListener("click", () => {
+    let date = new Date();
+    let FileName = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}`.replace(/\s/g, '');
     const txt = document.getElementById('printout').innerHTML;
     const blob = new Blob([txt], {type: "text/html"});
     const url = URL.createObjectURL(blob);
     const ele = document.createElement("A");
     ele.href = url;
-    ele.download = "llm_coversation.html";
+    ele.download = "llm${FileName}.html";
     ele.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
