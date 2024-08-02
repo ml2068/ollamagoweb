@@ -36,8 +36,18 @@ func main() {
 // index.html
 func index(w http.ResponseWriter, r *http.Request) {
 	llm := os.Getenv("llm")
+	client, err := api.ClientFromEnvironment()
+	if err != nil {
+		log.Fatal(err)
+	}
+	ollamaversion, _ :=client.Version(context.Background()) 
+	
 	t, _ := template.ParseFiles("static/index.html")
-	err := t.Execute(w, map[string]string{"llm":llm})  
+	data := map[string]interface{}{
+		"llm":    llm,
+		"Ollav": ollamaversion,
+	}
+	err := t.Execute(w, data)  
     	if err != nil {
         	log.Println(err)
     	}
