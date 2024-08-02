@@ -12,7 +12,7 @@ function send(e){
     $("#printout").append(
         "<div class='prompt-message'>" + 
         "<div style='white-space: pre-wrap;'>" +
-        "Quest:"+prompt  +
+        "<h5>Quest:</h5>"+prompt  +
         "</div>" +
         "<span class='message-loader js-loading spinner-border'></span>" +
         "</div>"             
@@ -25,7 +25,7 @@ function send(e){
 document.getElementById("btnSave").addEventListener("click", () => {
     let date = new Date();
     let FileName = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}`.replace(/\s/g, '');
-    const txt = document.getElementById('printout').innerHTML+`(`+document.getElementById('llmtag').innerText+`)`;
+    const txt = document.getElementById('printout').innerHTML+`-----(`+document.getElementById('llmtag').innerText+`)-----`;
     const blob = new Blob([txt], {type: "text/html"});
     const url = URL.createObjectURL(blob);
     const ele = document.createElement("A");
@@ -73,6 +73,9 @@ async function runScript(prompt, action="/run") {
         $("#"+outId).append(decoder.decode(value));
         window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     }
+    $("#printout").find("div[style*='white-space: pre-wrap']").each(function() {
+        $(this).attr('style', '');
+    });
     $(".js-loading").removeClass("spinner-border");        
     $("#"+outId).html(converter.makeHtml($("#"+outId).html()));
     window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });    
