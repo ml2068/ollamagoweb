@@ -47,7 +47,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		"llm":    llm,
 		"Ollav": ollamaversion,
 	}
-	err := t.Execute(w, data)  
+	err = t.Execute(w, data)  
     	if err != nil {
         	log.Println(err)
     	}
