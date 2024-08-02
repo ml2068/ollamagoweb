@@ -81,6 +81,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 		Options: map[string]interface{}{
 			"Seed ": 5,
 			"Temperature":0.1,
+			"num_ctx": 4068,
 			//other options please check ollama doc
 		},
 	}
