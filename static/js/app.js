@@ -25,7 +25,7 @@ function send(e){
 document.getElementById("btnSave").addEventListener("click", () => {
     let date = new Date();
     let FileName = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}`.replace(/\s/g, '');
-    const txt = document.getElementById('printout').innerHTML;
+    const txt = document.getElementById('printout').innerHTML.replace(/\s/g, '')+`(llm:`+document.getElementById('llmtag').innerText+`)`;
     const blob = new Blob([txt], {type: "text/html"});
     const url = URL.createObjectURL(blob);
     const ele = document.createElement("A");
