@@ -30,7 +30,7 @@ document.getElementById("btnSave").addEventListener("click", () => {
     const url = URL.createObjectURL(blob);
     const ele = document.createElement("A");
     ele.href = url;
-    ele.download = "llm${FileName}.html";
+    ele.download = `llm${FileName}.html`;
     ele.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
