@@ -12,7 +12,7 @@ function send(e){
     $("#printout").append(
         "<div class='prompt-message'>" + 
         "<div style='white-space: pre-wrap;'>" +
-        prompt  +
+        "Quest:"+prompt  +
         "</div>" +
         "<span class='message-loader js-loading spinner-border'></span>" +
         "</div>"             
