@@ -29,8 +29,6 @@ document.getElementById("btnSave").addEventListener("click", () => {
     const headHtml = `<head lang="en">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script src="https://cdnjs.com/libraries/highlight.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 </head>`;
     const blob = new Blob([headHtml+txt], {type: "text/html"});
     const url = URL.createObjectURL(blob);
