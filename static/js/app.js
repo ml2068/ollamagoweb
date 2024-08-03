@@ -26,7 +26,13 @@ document.getElementById("btnSave").addEventListener("click", () => {
     let date = new Date();
     let fileName = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}`.replace(/\s/g, '')+Math.random().toString(36).substring(2,5);
     const txt = document.getElementById('printout').innerHTML+`-----(`+document.getElementById('llmtag').innerText+`)-----`;
-    const blob = new Blob([txt], {type: "text/html"});
+    const headHtml = `<head lang="en">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://cdnjs.com/libraries/highlight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+</head>`;
+    const blob = new Blob([headHtml+txt], {type: "text/html"});
     const url = URL.createObjectURL(blob);
     const ele = document.createElement("A");
     ele.href = url;
