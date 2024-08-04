@@ -76,7 +76,7 @@ async function runScript(prompt, action="/run") {
         $("#"+outId).append(decoder.decode(value));
         window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     }
-    $("#printout").find("div[style='white-space: pre-wrap']").each(function() {
+    $("#printout").find("#"+outId).each(function() {
         $(this).attr('style', '');
     });
     $(".js-loading").removeClass("spinner-border");        
