@@ -1,4 +1,3 @@
-
 t = 0;
 let resp = "";
 var converter = new showdown.Converter();
@@ -6,13 +5,13 @@ var converter = new showdown.Converter();
 function send(e){
     e.preventDefault();
     var prompt = $("#prompt").val().trimEnd();
+    var format_prompt=hljs.highlightAuto(prompt).value;
     $("#prompt").val("");
     autosize.update($("#prompt"));
-
     $("#printout").append(
         "<div class='prompt-message'>" + 
         "<div style='white-space: pre-wrap;'>" +
-        "<h5>Quest:</h5>"+prompt  +
+        "<h4>Quest:</h4>"+format_prompt  +
         "</div>" +
         "<span class='message-loader js-loading spinner-border'></span>" +
         "</div>"             
@@ -77,7 +76,7 @@ async function runScript(prompt, action="/run") {
         $("#"+outId).append(decoder.decode(value));
         window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     }
-    $("#printout").find("div[style*='white-space: pre-wrap']").each(function() {
+    $("#printout").find("div[style='white-space: pre-wrap']").each(function() {
         $(this).attr('style', '');
     });
     $(".js-loading").removeClass("spinner-border");        
