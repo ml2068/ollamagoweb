@@ -18,9 +18,8 @@ func main() {
 		log.Fatal(err)
 	}
 	//creat new client
-    client := api.NewClient(base, &http.Client{})
-
-
+	client := api.NewClient(base, &http.Client{})
+	
 	req := &api.GenerateRequest{
 		Model:  "llama3.1:8b",
 		Prompt: "how many planets are there?",
