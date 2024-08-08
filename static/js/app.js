@@ -59,7 +59,8 @@ async function runScript(prompt, action="/run") {
         "<div id='" + outId + 
         "' style='white-space: pre-wrap;'>" +         
         "</div>" +
-        "</div>" 
+        "</div>" +
+        "\n"
     );  
 
     response = await fetch("/run", {
