@@ -90,6 +90,16 @@ func run(w http.ResponseWriter, r *http.Request) {
 		c := []byte(resp.Response)
 		w.Write(c)
 		f.Flush()
+		if resp.Done{
+			log.Println("\nMetrics:")
+			log.Println("TotalDuration:", resp.Metrics.TotalDuration)
+			log.Println("LoadDuration:", resp.Metrics.LoadDuration)
+			log.Println("PromptEvalCount:", resp.Metrics.PromptEvalCount)
+			log.Println("PromptEvalDuration:", resp.Metrics.PromptEvalDuration)
+			log.Println("EvalCount:", resp.Metrics.EvalCount)
+			log.Println("EvalDuration:", resp.Metrics.EvalDuration)
+			log.Printf("Speed:%.2f tokens/s\n", float64(resp.Metrics.EvalCount)/resp.Metrics.EvalDuration.Seconds())
+		}
 		return nil
 	}
 	err = client.Generate(ctx, req, respFunc)
