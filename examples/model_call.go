@@ -42,6 +42,17 @@ func main() {
 
 	respFunc := func(resp api.ChatResponse) error {
 		fmt.Print(resp.Message.Content)
+		if resp.Done{
+			fmt.Println("\nMetrics:")
+			fmt.Println("TotalDuration:", resp.Metrics.TotalDuration)
+			fmt.Println("LoadDuration:", resp.Metrics.LoadDuration)
+			fmt.Println("PromptEvalCount:", resp.Metrics.PromptEvalCount)
+			fmt.Println("PromptEvalDuration:", resp.Metrics.PromptEvalDuration)
+			fmt.Println("EvalCount:", resp.Metrics.EvalCount)
+			fmt.Println("EvalDuration:", resp.Metrics.EvalDuration)
+			fmt.Printf("Speed:%.2f tokens/s\n", float64(resp.Metrics.EvalCount)/resp.Metrics.EvalDuration.Seconds())
+		}
+	 
 		return nil
 	}
 
