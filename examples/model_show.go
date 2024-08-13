@@ -1,3 +1,6 @@
+//ollama list to get all the model tag
+//show model detail through go run + model-tag
+//go run model_show.go llama3.1:8b 
 package main
 
 import (
@@ -15,6 +18,7 @@ type Data struct {
 }
 
 func main() {
+    args := os.Args[1]
 	//load client
     client, err := api.ClientFromEnvironment()
     if err != nil {
@@ -24,7 +28,7 @@ func main() {
     ctx := context.Background()
 
     sq := &api.ShowRequest{
-	Model: "llama3.1:8b",
+	Model: args,
     }
 
     models_show,err:=client.Show(ctx, sq )
