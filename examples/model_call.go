@@ -38,6 +38,37 @@ func main() {
 	req := &api.ChatRequest{
 		Model:    "llama3.1:8b",
 		Messages: messages,
+		Options: map[string]interface{}{
+		"Runner": map[string]interface{}{
+			"NumCtx":    256,
+			"NumBatch":  16,
+			"NumGPU":    1,
+			"MainGPU":   0,
+			"LowVRAM":   true,
+			"F16KV":     true,
+			"LogitsAll": true,
+			"VocabOnly": true,
+			"NumThread": 2,
+		},
+		"NumKeep":         256,
+		"Seed":            42,
+		"NumPredict":      10,
+		"TopK":            5,
+		"TopP":            0.8,
+		"MinP":            0.1,
+		"TFSZ":            0.5,
+		"TypicalP":        0.9,
+		"RepeatLastN":     4,
+		"Temperature":     1.2,
+		"RepeatPenalty":   0.6,
+		"PresencePenalty": 0.7,
+		"FrequencyPenalty": 0.8,
+		"Mirostat":        1,
+		"MirostatTau":     5.0,
+		"MirostatEta":     0.4,
+		"PenalizeNewline": false,
+		"Stop":            []string{"\n"},
+		},
 	}
 	messagesJSON, _ := json.MarshalIndent(req.Messages, " ", "   ")
 	fmt.Println(string(messagesJSON))
