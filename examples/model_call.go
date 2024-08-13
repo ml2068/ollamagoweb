@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
-
+	"encoding/json"
 	"github.com/ollama/ollama/api"
 )
 
@@ -39,6 +39,8 @@ func main() {
 		Model:    "llama3.1:8b",
 		Messages: messages,
 	}
+	messagesJSON, _ := json.MarshalIndent(req.Messages, " ", "   ")
+	fmt.Println(string(messagesJSON))
 
 	respFunc := func(resp api.ChatResponse) error {
 		fmt.Print(resp.Message.Content)
