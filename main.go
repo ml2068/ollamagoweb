@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"math"
 	"text/template"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -13,11 +14,17 @@ import (
 	"github.com/ollama/ollama/api"
 )
 
+var client *api.Client
+
 // initialise to load environment variable from .env file
 func init() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
+	}
+	client, err = api.ClientFromEnvironment()
+	if err != nil {
+		log.Fatal(err)
 	}
 }
 
@@ -36,12 +43,7 @@ func main() {
 // index.html
 func index(w http.ResponseWriter, r *http.Request) {
 	llm := os.Getenv("llm")
-	client, err := api.ClientFromEnvironment()
-	if err != nil {
-		log.Fatal(err)
-	}
 	ollamaversion, _ :=client.Version(context.Background()) 
-	
 	t, _ := template.ParseFiles("static/index.html")
 	data := map[string]interface{}{
 		"llm":    llm,
@@ -64,14 +66,20 @@ func run(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+	ctx := context.Background()
 	
-	client, err := api.ClientFromEnvironment()
+	//build ShowRequest
+	sq := &api.ShowRequest{
+		Model: os.Getenv("llm"),
+	}
+	models_show,err:=client.Show(ctx, sq )
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	ctx := context.Background()
-
+	//get the llm model context_length
+	var num =models_show.ModelInfo["llama.context_length"].(float64)
+	clen:= math.Min(8192, math.Max(num, 0))
+	
 	w.Header().Add("mime-type", "text/event-stream")
 	f := w.(http.Flusher)
 	
@@ -81,7 +89,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 		Options: map[string]interface{}{
 			"Seed ": 5,
 			"Temperature":0.1,
-			"num_ctx": 4068,
+			"num_ctx": clen,
 			//other options please check ollama doc
 		},
 	}
