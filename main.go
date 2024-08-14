@@ -55,34 +55,22 @@ func index(w http.ResponseWriter, r *http.Request) {
     	}
 }
 
-// call the LLM and return the response
-func run(w http.ResponseWriter, r *http.Request) {
-	prompt := struct {
-		Input string `json:"input"`
-	}{}
-	// decode JSON from client
-	err := json.NewDecoder(r.Body).Decode(&prompt)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+//get Option Setting function
+func GetOptionSetting(client *api.Client) (map[string]interface{}, error) {
 	ctx := context.Background()
 	
-	//build ShowRequest
 	sq := &api.ShowRequest{
 		Model: os.Getenv("llm"),
 	}
-	models_show,err:=client.Show(ctx, sq )
+	
+	models_show, err := client.Show(ctx, sq)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
-	//get the llm model context_length
-	var num =models_show.ModelInfo["llama.context_length"].(float64)
-	clen:= math.Min(8192, math.Max(num, 0))
 	
-	w.Header().Add("mime-type", "text/event-stream")
-	f := w.(http.Flusher)
-	
+	var num = models_show.ModelInfo["llama.context_length"].(float64)
+	clen := math.Min(8192, math.Max(num, 0))
+
 	options_setting := map[string]interface{}{
 		"Runner": map[string]interface{}{
 			"NumCtx":    clen,
@@ -114,6 +102,33 @@ func run(w http.ResponseWriter, r *http.Request) {
 		"PenalizeNewline": false,
 		"Stop":            []string{"\n"},
 	}
+
+	return options_setting, nil
+}
+
+
+// call the LLM and return the response
+func run(w http.ResponseWriter, r *http.Request) {
+	prompt := struct {
+		Input string `json:"input"`
+	}{}
+	// decode JSON from client
+	err := json.NewDecoder(r.Body).Decode(&prompt)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	
+	ctx := context.Background()
+	
+	w.Header().Add("mime-type", "text/event-stream")
+	f := w.(http.Flusher)
+	
+	options_setting, err := GetOptionSetting(client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	
 	req := &api.GenerateRequest{
 		Model:  os.Getenv("llm"),
 		Prompt:prompt.Input,
