@@ -117,7 +117,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 	req := &api.GenerateRequest{
 		Model:  os.Getenv("llm"),
 		Prompt:prompt.Input,
-		Options: options_setting
+		Options: options_setting,
 	}
 
 	respFunc := func(resp api.GenerateResponse) error {
