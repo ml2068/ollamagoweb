@@ -55,22 +55,24 @@ func index(w http.ResponseWriter, r *http.Request) {
     	}
 }
 
+// get LLM Context Length
+func getContextLength() int {
+    ctx := context.Background()
+    sq := &api.ShowRequest{
+        Model: os.Getenv("llm"),
+    }
+    model, err := client.Show(ctx, sq)
+    if err != nil {
+        log.Println(err)
+    }
+    var num = model.ModelInfo["llama.context_length"].(float64)
+    clen := math.Min(8192, math.Max(num, 0))
+    return int(clen)
+}
+
 //get Option Setting function
 func GetOptionSetting(client *api.Client) (map[string]interface{}, error) {
-	ctx := context.Background()
-	
-	sq := &api.ShowRequest{
-		Model: os.Getenv("llm"),
-	}
-	
-	models_show, err := client.Show(ctx, sq)
-	if err != nil {
-		return nil, err
-	}
-	
-	var num = models_show.ModelInfo["llama.context_length"].(float64)
-	clen := math.Min(8192, math.Max(num, 0))
-
+	clen :=getContextLength()
 	options_setting := map[string]interface{}{
 		"Runner": map[string]interface{}{
 			"NumCtx":    clen,
@@ -102,7 +104,6 @@ func GetOptionSetting(client *api.Client) (map[string]interface{}, error) {
 		"PenalizeNewline": false,
 		"Stop":            []string{"\n"},
 	}
-
 	return options_setting, nil
 }
 
