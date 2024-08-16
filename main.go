@@ -44,10 +44,12 @@ func main() {
 func index(w http.ResponseWriter, r *http.Request) {
 	llm := os.Getenv("llm")
 	ollamaversion, _ :=client.Version(context.Background())
+	clen :=getContextLength(client)
 	t, _ := template.ParseFiles("static/index.html")
 	data := map[string]interface{}{
 		"llm":    llm,
 		"Ollav": ollamaversion,
+		"context": clen,
 	}
 	err := t.Execute(w, data)  
     	if err != nil {
@@ -56,7 +58,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 // get LLM Context Length
-func getContextLength() int {
+func getContextLength(client *api.Client) int {
     ctx := context.Background()
     sq := &api.ShowRequest{
         Model: os.Getenv("llm"),
@@ -71,8 +73,8 @@ func getContextLength() int {
 }
 
 //get Option Setting function
-func GetOptionSetting(client *api.Client) (map[string]interface{}, error) {
-	clen :=getContextLength()
+func GetOptionSetting() (map[string]interface{}, error) {
+	clen :=getContextLength(client)
 	options_setting := map[string]interface{}{
 		"Runner": map[string]interface{}{
 			"NumCtx":    clen,
