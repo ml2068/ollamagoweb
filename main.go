@@ -44,12 +44,10 @@ func main() {
 func index(w http.ResponseWriter, r *http.Request) {
 	llm := os.Getenv("llm")
 	ollamaversion, _ :=client.Version(context.Background())
-	clen :=getContextLength() 
 	t, _ := template.ParseFiles("static/index.html")
 	data := map[string]interface{}{
 		"llm":    llm,
 		"Ollav": ollamaversion,
-		"contex": clen,
 	}
 	err := t.Execute(w, data)  
     	if err != nil {
