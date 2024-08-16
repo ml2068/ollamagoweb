@@ -127,7 +127,7 @@ func run(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("mime-type", "text/event-stream")
 	f := w.(http.Flusher)
 	
-	options_setting, err := GetOptionSetting(client)
+	options_setting, err := GetOptionSetting()
 	if err != nil {
 		log.Fatal(err)
 	}
