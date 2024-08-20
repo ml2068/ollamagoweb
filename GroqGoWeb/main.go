@@ -76,14 +76,24 @@ func run(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	opts := []llms.CallOption{
+	        llms.WithMaxTokens(4069),
+	        llms.WithTemperature(0.5),
+    	}
+	resp, err := llm.GenerateContent(context.Background(),[]llms.MessageContent{msg}, opts...)
+	if err != nil {
+    		http.Error(w, err.Error(), http.StatusInternalServerError)
+    		return
+    	}
+    
+	for _, c := range resp.Choices{
+		w.Header().Add("mime-type", "text/event-stream")
+		f := w.(http.Flusher)
+		w.Write([]byte(c.Content))
+		f.Flush()
+		for key, value := range c.GenerationInfo {
+			log.Println(key, ":", value)
+		}
+	}
 
-	w.Header().Add("mime-type", "text/event-stream")
-	f := w.(http.Flusher)
-	llms.GenerateFromSinglePrompt(context.Background(),llm, prompt.Input,
-		llms.WithMaxTokens(8129), llms.WithTemperature(0.5),
-		llms.WithStreamingFunc(func(ctx context.Context, chunk []byte) error {
-			w.Write(chunk)
-			f.Flush()
-			return nil
-		}), )
 }
