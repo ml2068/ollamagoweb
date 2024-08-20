@@ -16,7 +16,8 @@ import (
 func init() {
     err := godotenv.Load()
     if err != nil {
-        fmt.Fatal("Error loading .env file")
+        fmt.Println("Error loading .env file")
+        return
     }
 }
 
@@ -46,6 +47,7 @@ func main() {
     resp, err := llm.GenerateContent(context.Background(), []llms.MessageContent{msg}, opts...)
     if err != nil {
         fmt.Println(err)
+        return
     }
 
     if resp != nil {
