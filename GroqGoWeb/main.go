@@ -65,6 +65,13 @@ func run(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+	msg := llms.MessageContent{
+        	Role:  llms.ChatMessageTypeHuman,
+        	Parts: []llms.ContentPart{
+            		llms.TextContent{Text: prompt.Input},
+        	},
+    	}
+	
 
 	llm, err := openai.New(
 		openai.WithModel(os.Getenv("llm")),
