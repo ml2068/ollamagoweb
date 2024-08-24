@@ -49,7 +49,7 @@ $(document).ready(function(){
     autosize($('#prompt'));    
 });  
 
-async function runScript(prompt, action="/run") {    
+async function runScript(prompt, inputId) {    
     var outputId = "result-" + uuidv4();
     $("#printout").append(
         "<div class='px-3 py-3'>" + 
