@@ -79,14 +79,14 @@ async function runScript(prompt, inputId) {
     while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-        $("#"+outId).append(decoder.decode(value));
+        $("#"+ outputId).append(decoder.decode(value));
         window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     }
-    $("#printout").find("#"+outId).each(function() {
+    $("#printout").find("#"+ outputId).each(function() {
         $(this).attr('style', '');
     });
     $(".js-loading").removeClass("spinner-border");        
-    $("#"+outId).html(converter.makeHtml($("#"+outId).html()));
+    $("#"+outputId).html(converter.makeHtml($("#"+outId).html()));
     window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     hljs.highlightAll();
     
