@@ -4,13 +4,6 @@ let currentConversationId = 0;
 const MAX_CONVERSATIONS = 3;
 const MAX_CONVERSATION_LENGTH = 6656;
 
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
-
 function send(e){
     e.preventDefault();
     var prompt = $("#prompt").val().trimEnd();
@@ -37,6 +30,13 @@ function send(e){
     runScript(prompt);          
     $(".js-logo").addClass("active");
 };
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 $(document).ready(function(){  
     $('#prompt').keypress(function(event){        
@@ -86,7 +86,7 @@ async function runScript(prompt, inputId) {
         $(this).attr('style', '');
     });
     $(".js-loading").removeClass("spinner-border");        
-    $("#"+outputId).html(converter.makeHtml($("#"+outId).html()));
+    $("#"+outputId).html(converter.makeHtml($("#"+outputId).html()));
     window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     hljs.highlightAll();
     
