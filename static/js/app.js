@@ -27,7 +27,7 @@ function send(e){
         "\n"
     );        
     window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
-    runScript(prompt);          
+    runScript(prompt,inputId);          
     $(".js-logo").addClass("active");
 };
 
