@@ -8,7 +8,7 @@ function send(e){
     e.preventDefault();
     var prompt = $("#prompt").val().trimEnd();
     var format_prompt=hljs.highlightAuto(prompt).value;
-    var inputId = generateId("input");
+    var inputId = uuidv4();
     $("#prompt").val("");
     autosize.update($("#prompt"));
     $("#printout").append(
@@ -37,10 +37,6 @@ function uuidv4() {
     return v.toString(16);
   });
 }
-// Generate a unique ID, 生成唯一ID
-function generateId(prefix) {
-  return prefix + "-" + uuidv4();
-}
 
 $(document).ready(function(){  
     $('#prompt').keypress(function(event){        
@@ -55,7 +51,7 @@ $(document).ready(function(){
 
 // Main function 主函数
 async function runScript(prompt, inputId) {
-  var outputId = generateId("result");
+  var outputId = uuidv4();
   $("#printout").append(createOutputContainer(outputId));
   
   var conversationText = getConversationText();
