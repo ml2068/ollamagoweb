@@ -1,8 +1,7 @@
 var converter = new showdown.Converter();
 const conversationHistory = [];
 let currentConversationId = 0;
-const MAX_CONVERSATIONS = 3;
-const MAX_CONVERSATION_LENGTH = 6656;
+
 
 function send(e){
     e.preventDefault();
@@ -122,27 +121,29 @@ function formatOutput(outputId) {
 
 //  Save conversation history 保存对话历史
 function saveConversationHistory(inputId, outputId, prompt, outputContent) {
-  var conversation = {
+    const MAX_CONVERSATIONS = 10; //how many round conversation to save
+    const MAX_CONVERSATION_LENGTH = 6656; //max lenght of conversation history
+    var conversation = {
       id: currentConversationId,
       inputId: inputId,
       outputId: outputId,
       inputContent: prompt,
       outputContent: outputContent
-  };
+    };
   
   //  Conversation length limited to 6656 characters 对话长度限定在6656字符
-  if (conversation.inputContent.length + conversation.outputContent.length > MAX_CONVERSATION_LENGTH) {
+    if (conversation.inputContent.length + conversation.outputContent.length > MAX_CONVERSATION_LENGTH) {
       conversation.inputContent = conversation.inputContent.substring(0, MAX_CONVERSATION_LENGTH / 4);
       conversation.outputContent = conversation.outputContent.substring(0, MAX_CONVERSATION_LENGTH / 4);
-  }
+    }
   
-  conversationHistory.push(conversation);
-  currentConversationId++;
+    conversationHistory.push(conversation);
+    currentConversationId++;
   
-  // Only store three rounds of conversation 只存储三轮对话
-  if (conversationHistory.length > MAX_CONVERSATIONS) {
-      conversationHistory.shift();
-  }
+    // Only store three rounds of conversation 只存储三轮对话
+    if (conversationHistory.length > MAX_CONVERSATIONS) {
+        conversationHistory.shift();
+    }
 }
 
 document.getElementById("btnSave").addEventListener("click", () => {
