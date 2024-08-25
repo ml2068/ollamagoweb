@@ -1,5 +1,5 @@
 var converter = new showdown.Converter();
-let conversationHistory = [];
+const conversationHistory = [];
 let currentConversationId = 0;
 const MAX_CONVERSATIONS = 3;
 const MAX_CONVERSATION_LENGTH = 6656;
@@ -37,7 +37,7 @@ function uuidv4() {
     return v.toString(16);
   });
 }
-// 生成唯一ID
+// Generate a unique ID, 生成唯一ID
 function generateId(prefix) {
   return prefix + "-" + uuidv4();
 }
@@ -53,7 +53,7 @@ $(document).ready(function(){
     autosize($('#prompt'));    
 });  
 
-// 主函数
+// Main function 主函数
 async function runScript(prompt, inputId) {
   var outputId = generateId("result");
   $("#printout").append(createOutputContainer(outputId));
@@ -69,7 +69,7 @@ async function runScript(prompt, inputId) {
   saveConversationHistory(inputId, outputId, prompt, $("#" + outputId).html());
 }
 
-// 创建输出容器
+//Create output container  创建输出容器
 function createOutputContainer(outputId) {
   return "<div class='px-3 py-3'>" +
       "<div id='" + outputId +
@@ -79,7 +79,7 @@ function createOutputContainer(outputId) {
       "\n";
 }
 
-// 获取对话历史文本
+// Get conversation history text  获取对话历史文本
 function getConversationText() {
   var conversationText = "";
   conversationHistory.forEach(function(conversation) {
@@ -88,12 +88,12 @@ function getConversationText() {
   return conversationText;
 }
 
-// 生成新提示文本
+// Generate new prompt text 生成新提示文本
 function generateNewPrompt(prompt, conversationText) {
   return `Please answer based on the conversation context and the order of the questions:\n ${conversationText}\n Answer the question: ${prompt},\n If relevant to the context, respond accordingly; otherwise, answer based on the question content only.`;
 }
 
-// 发送请求并获取响应
+// Send request and get response 发送请求并获取响应
 async function fetchResponse(prompt) {
   var response = await fetch("/run", {
       method: "POST",
@@ -103,7 +103,7 @@ async function fetchResponse(prompt) {
   return response;
 }
 
-// 处理响应数据
+// Handle response data 处理响应数据
 async function handleResponse(response, outputId) {
   var decoder = new TextDecoder();
   var reader = response.body.getReader();
@@ -115,7 +115,7 @@ async function handleResponse(response, outputId) {
   }
 }
 
-// 格式化输出内容
+// Format output content 格式化输出内容
 function formatOutput(outputId) {
   $(".js-loading").removeClass("spinner-border");
   $("#" + outputId).attr('style', '');
@@ -124,7 +124,7 @@ function formatOutput(outputId) {
   hljs.highlightAll();
 }
 
-// 保存对话历史
+//  Save conversation history 保存对话历史
 function saveConversationHistory(inputId, outputId, prompt, outputContent) {
   var conversation = {
       id: currentConversationId,
@@ -134,7 +134,7 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
       outputContent: outputContent
   };
   
-  // 对话长度限定在4096字符
+  //  Conversation length limited to 6656 characters 对话长度限定在6656字符
   if (conversation.inputContent.length + conversation.outputContent.length > MAX_CONVERSATION_LENGTH) {
       conversation.inputContent = conversation.inputContent.substring(0, MAX_CONVERSATION_LENGTH / 4);
       conversation.outputContent = conversation.outputContent.substring(0, MAX_CONVERSATION_LENGTH / 4);
@@ -143,7 +143,7 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
   conversationHistory.push(conversation);
   currentConversationId++;
   
-  // 只存储三轮对话
+  // Only store three rounds of conversation 只存储三轮对话
   if (conversationHistory.length > MAX_CONVERSATIONS) {
       conversationHistory.shift();
   }
