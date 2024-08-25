@@ -7,6 +7,9 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"os/signal"
+	"time"
+	"syscall"
 	"text/template"
 
 	"github.com/go-chi/chi"
@@ -41,7 +44,34 @@ func main() {
 	r.Post("/run", run)
 	log.Println("\033[93mGroq go web serve started. Press CTRL+C to quit.\033[0m")
 	log.Printf("URL:%s:"+os.Getenv("PORT"),ipAddress)
-	http.ListenAndServe(":"+os.Getenv("PORT"), r)
+
+	// Create a new server
+	srv := &http.Server{
+		Addr:    ":" + os.Getenv("PORT"),
+		Handler: r,
+	}
+
+	// Start the server in a goroutine
+	go func(ipAddress net.IP) {
+		log.Printf("URL:%s:%s", ipAddress, os.Getenv("PORT"))
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Fatal(err)
+		}
+	}(ipAddress)
+
+	// Wait for interrupt signal to stop the server
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+	log.Println("Server is shutting down...")
+
+	// Shut down the server
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(ctx); err != nil {
+		log.Fatal(err)
+	}
+	log.Println("Server stopped")
 }
 
 // index
