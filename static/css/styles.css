@@ -128,3 +128,17 @@ textarea.form-control {
   height: 3.8rem;
 }
 
+.delete-button {
+  font-size: 10px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  cursor: pointer;
+  float: right;
+  margin-right: 10px;
+}
+
