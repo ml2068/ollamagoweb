@@ -10,18 +10,17 @@ function send(e){
     var inputId = uuidv4();
     $("#prompt").val("");
     autosize.update($("#prompt"));
-    $("#printout").append(
-        "<div class='px-3 py-3'>" +
-        "<div id='" + inputId +
-        "'style='white-space: pre-wrap;'>" +
+    $("#printout").append(      
+        "<div id='" + inputId + "' class='px-3 py-3'>" +
+        "<div style='white-space: pre-wrap;'>" +
         "</div>" +
-        "</div>" +
-        "<div class='prompt-message'>" + 
+        "<div class='prompt-message'>" +
         "<div style='white-space: pre-wrap;'>" +
         "<h4>Question:</h4>"+
         format_prompt  +
         "</div>" +
         "<span class='message-loader js-loading spinner-border'></span>" +
+        "</div>" +
         "</div>" +
         "\n"
     );        
@@ -45,28 +44,52 @@ $(document).ready(function(){
             return false;
         }
     });       
-    autosize($('#prompt'));    
-});  
+    autosize($('#prompt'));
+    $(document).on('click', '.delete-button', function() {
+        var outputId = $(this).attr('data-output-id');
+        var inputId = getInputIdByOutputId(outputId);
+        deleteConversationHistory(inputId, outputId);
+    });  
+});
+
+// 根据 outputId 获取 inputId
+function getInputIdByOutputId(outputId) {
+  for (var i = 0; i < conversationHistory.length; i++) {
+    if (conversationHistory[i].outputId === outputId) {
+      return conversationHistory[i].inputId;
+    }
+  }
+  return null;
+}
+
+function deleteConversationHistory(inputId, outputId) {
+  for (var i = 0; i < conversationHistory.length; i++) {
+    if (conversationHistory[i].inputId === inputId && conversationHistory[i].outputId === outputId) {
+      conversationHistory.splice(i, 1);
+      break;
+    }
+  }
+  $('#' + inputId).remove(); // Remove the input element
+  $('#' + outputId).remove(); // Remove the output element
+  $('[data-output-id="' + outputId + '"]').remove(); // Remove the delete button element
+}
 
 // Main function 主函数
 async function runScript(prompt, inputId) {
   var outputId = uuidv4();
   $("#printout").append(createOutputContainer(outputId));
-  
   var conversationText = getConversationText();
   var newPrompt = generateNewPrompt(prompt, conversationText);
-  
   var response = await fetchResponse(newPrompt);
   await handleResponse(response, outputId);
-  
   formatOutput(outputId);
-  
   saveConversationHistory(inputId, outputId, prompt, $("#" + outputId).html());
 }
 
 //Create output container  创建输出容器
 function createOutputContainer(outputId) {
-  return "<div class='px-3 py-3'>" +
+  return "<button class='delete-button' data-output-id='" + outputId + "'>X</button>" +
+      "<div class='px-3 py-3'>" +
       "<div id='" + outputId +
       "' style='white-space: pre-wrap;'>" +
       "</div>" +
@@ -121,7 +144,7 @@ function formatOutput(outputId) {
 
 //  Save conversation history 保存对话历史
 function saveConversationHistory(inputId, outputId, prompt, outputContent) {
-    const MAX_CONVERSATIONS = 3; //how many round conversation to save
+    const MAX_CONVERSATIONS = 10; //how many round conversation to save
     const MAX_CONVERSATION_LENGTH = 6656; //max lenght of conversation history
     var conversation = {
       id: currentConversationId,
@@ -149,7 +172,7 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
 document.getElementById("btnSave").addEventListener("click", () => {
     const date = new Date();
     const fileName = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}`.replace(/\s/g, '')+Math.random().toString(36).substring(2,5);
-    const txt = document.getElementById('printout').innerHTML+`-----(`+document.getElementById('llmtag').innerText+`)-----`;
+    const txt = document.getElementById('printout').innerHTML.replace(/<button class="delete-button"[^>]*>.*?<\/button>/g, '') + `-----(${document.getElementById('llmtag').innerText})-----`;
     const headHtml = `<head lang="en">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
