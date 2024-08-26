@@ -121,7 +121,7 @@ function formatOutput(outputId) {
 
 //  Save conversation history 保存对话历史
 function saveConversationHistory(inputId, outputId, prompt, outputContent) {
-    const MAX_CONVERSATIONS = 10; //how many round conversation to save
+    const MAX_CONVERSATIONS = 3; //how many round conversation to save
     const MAX_CONVERSATION_LENGTH = 6656; //max lenght of conversation history
     var conversation = {
       id: currentConversationId,
