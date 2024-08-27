@@ -28,16 +28,18 @@ Here are some screenshots.
 
 # Models
 
-You can download various LLM models from https://www.ollama.com
+Download various LLM models from https://www.ollama.com
 
 # edit .env 
-You can setting the port and llm by edit the .env file
+
+Setting the port and llm tag by edit the .env file
 
 `PORT=1102`
 
 `llm=codellama:latest`
 
 # run the servcie
+
 `git clone https://github.com/ml2068/ollamagoweb.git`
 
 `cd ollamagoweb`
@@ -82,4 +84,4 @@ You can setting the port and llm by edit the .env file
 
 `go run main.go`
 # Groq
-you can get Groq free api-key from https://www.groq.com
+Get Groq free api-key from https://www.groq.com
