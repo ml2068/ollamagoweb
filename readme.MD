@@ -34,13 +34,6 @@ Here are some screenshots.
 
 Download various LLM models from https://www.ollama.com
 
-# edit .env 
-
-Setting the port and llm tag by edit the .env file
-
-`PORT=1102`
-
-`llm=codellama:latest`
 
 # run the servcie
 
@@ -48,9 +41,17 @@ Setting the port and llm tag by edit the .env file
 
 `cd ollamagoweb`
 
+`go mod tidy`
+
+# edit .env 
+
+Setting the port and llm tag by edit the .env file
+
 `vim .env`
 
-`go mod tidy`
+`PORT=1102`
+
+`llm=codellama:latest`
 
 `go run main.go`
 
