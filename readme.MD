@@ -2,13 +2,13 @@
 
 ollamagoweb, a simple ChatGPT clone built with Go, utilizing Llama-compatible LLMs through ollama. This innovative tool offers a seamless conversational experience, as showcased in the following screenshots:
 
-Starting Screen The main page displays the Ollama version, LLM tag, and context length, providing essential information for a productive conversation.
+**Starting Screen** The main page displays the Ollama version, LLM tag, and context length, providing essential information for a productive conversation.
 
-Answering Questions and Contextual Discussion ollamagoweb effortlessly responds to questions, such as "What is TOTP?", and continues the discussion in context, allowing for a natural and engaging exchange.
+**Answering Questions** and Contextual Discussion ollamagoweb effortlessly responds to questions, such as "What is TOTP?", and continues the discussion in context, allowing for a natural and engaging exchange.
 
-Conversation Management For each round of dialogue, users can conveniently delete the conversation by clicking the button in the upper-right corner, ensuring a clutter-free interface.
+**Conversation Management** For each round of dialogue, users can conveniently delete the conversation by clicking the button in the upper-right corner, ensuring a clutter-free interface.
 
-Backend Server The backend server efficiently displays and calculates the session's token and speed, providing a robust foundation for the application.
+**Backend Server** The backend server efficiently displays and calculates the session's token and speed, providing a robust foundation for the application.
 
 Here are some screenshots.
 
