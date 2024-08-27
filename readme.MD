@@ -14,6 +14,10 @@ Contextual Discussion ollamagoweb effortlessly responds to questions, such as "W
 
 For each round of dialogue, users can conveniently delete the conversation by clicking the button in the upper-right corner, ensuring a clutter-free interface.
 
+**Conversation Recording**: 
+
+Ollamagoweb allows users to save conversations as HTML documents for later reference, providing a convenient way to review and analyze previous discussions.
+
 **Backend Server**: 
 
 The backend server efficiently displays and calculates the session's token and speed, providing a robust foundation for the application.
