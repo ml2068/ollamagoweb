@@ -34,8 +34,7 @@ Here are some screenshots.
 
 Download various LLM models from https://www.ollama.com
 
-
-# run the servcie
+# Git Clone
 
 `git clone https://github.com/ml2068/ollamagoweb.git`
 
@@ -51,7 +50,9 @@ Setting the port and llm tag by edit the .env file
 
 `PORT=1102`
 
-`llm=codellama:latest`
+`llm=llama3.1:8b`
+
+# run the servcie
 
 `go run main.go`
 
