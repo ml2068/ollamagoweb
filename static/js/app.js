@@ -11,9 +11,8 @@ function send(e){
     $("#prompt").val("");
     autosize.update($("#prompt"));
     $("#printout").append(      
-        "<div id='" + inputId + "' class='px-3 py-3'>" +
+        "<div id='" + inputId + "'>" +
         "<div style='white-space: pre-wrap;'>" +
-        "</div>" +
         "<div class='prompt-message'>" +
         "<div style='white-space: pre-wrap;'>" +
         "<h4>Question:</h4>"+
