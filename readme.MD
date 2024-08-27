@@ -4,7 +4,7 @@ ollamagoweb is a simple ChatGPT clone built with Go. It uses Llama-compatible LL
 
 Here are some screenshots.
 
-1.Starting screen.
+1.Starting screen. show up Ollama version, LLM tag, and context lengh.
 
 <img src="assets/screenshot01.png" alt="ollamagoweb main page" width="60%"/>
 
