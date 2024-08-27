@@ -31,7 +31,11 @@ You can setting the port and llm by edit the .env file
 `llm=codellama:latest`
 
 # run the servcie
+`git clone https://github.com/ml2068/ollamagoweb.git`
+
 `cd ollamagoweb`
+
+`vim .env`
 
 `go mod tidy`
 
