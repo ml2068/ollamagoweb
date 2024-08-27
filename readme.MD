@@ -62,7 +62,7 @@ Setting the port and llm tag by edit the .env file
 
 <img src="GroqGoWeb/groqfast.png" alt="Groq go fast" width="60%"/>
 
-#1、replace file from GroqGoWeb as below:
+1. replace file from GroqGoWeb as below:
 
 `./main.go`
 
@@ -70,7 +70,7 @@ Setting the port and llm tag by edit the .env file
 
 `./static/logo.png`
 
-#2、edit the .env file:
+2. edit the .env file:
 
 `PORT=1102`
 
@@ -80,8 +80,10 @@ Setting the port and llm tag by edit the .env file
 
 `apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H`
 
-#3、and run 
+3. and run 
 
 `go run main.go`
+
 # Groq
+
 Get Groq free api-key from https://www.groq.com
