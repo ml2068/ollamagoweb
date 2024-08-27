@@ -10,6 +10,8 @@ Starting screen.
 
 Answering the question "What is the TOTP?", and continue the discussion in context.
 
+For each round of dialogue, you can click the button in the upper right corner to delete it.
+
 <img src="assets/screenshot02.png" alt="What is TOTP?" width="60%"/>
 
 The backend server displays and calculates the session's token and speed.
