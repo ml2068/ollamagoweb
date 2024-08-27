@@ -68,9 +68,11 @@ function deleteConversationHistory(inputId, outputId) {
       break;
     }
   }
+  $('#' + inputId).closest('.px-3.py-3').remove(); // Remove the input container element
+  $('#' + outputId).closest('.px-3.py-3').remove(); // Remove the output container element
+  $('[data-output-id="' + outputId + '"]').remove(); // Remove the delete button element
   $('#' + inputId).remove(); // Remove the input element
   $('#' + outputId).remove(); // Remove the output element
-  $('[data-output-id="' + outputId + '"]').remove(); // Remove the delete button element
 }
 
 // Main function 主函数
