@@ -76,6 +76,8 @@ Setting the port and llm tag by edit the .env file
 
 `./static/logo.png`
 
+`./static/favicon.ico`
+
 2. edit the .env file:
 
 `PORT=1102`
