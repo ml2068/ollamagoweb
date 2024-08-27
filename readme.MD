@@ -92,6 +92,10 @@ Setting the port and llm tag by edit the .env file
 
 `go run main.go`
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ml2068/ollamagoweb&type=Date)](https://star-history.com/#ml2068/ollamagoweb&Date)
+
 # Groq
 
 Get Groq free api-key from https://www.groq.com
