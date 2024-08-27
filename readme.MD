@@ -80,7 +80,7 @@ Setting the port and llm tag by edit the .env file
 
 `apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H`
 
-3. and run 
+3. go run 
 
 `go run main.go`
 
