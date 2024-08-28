@@ -10,19 +10,7 @@ function send(e){
     var inputId = uuidv4();
     $("#prompt").val("");
     autosize.update($("#prompt"));
-    $("#printout").append(      
-        "<div id='" + inputId + "'>" +
-        "<div style='white-space: pre-wrap;'>" +
-        "<div class='prompt-message'>" +
-        "<div style='white-space: pre-wrap;'>" +
-        "<h4>Question:</h4>"+
-        format_prompt  +
-        "</div>" +
-        "<span class='message-loader js-loading spinner-border'></span>" +
-        "</div>" +
-        "</div>" +
-        "\n"
-    );        
+    appendPrintout(inputId, format_prompt);  
     window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     runScript(prompt,inputId);          
     $(".js-logo").addClass("active");
@@ -34,6 +22,24 @@ function uuidv4() {
     return v.toString(16);
   });
 }
+
+function appendPrintout(inputId, format_prompt) {
+  $("#printout").append(
+      "<div id='" + inputId + "'>" +
+      "<div style='white-space: pre-wrap;'>" +
+      "<div class='prompt-message'>" +
+      "<div style='white-space: pre-wrap;'>" +
+      "<h4>Question:</h4>"+
+      format_prompt  +
+      "</div>" +
+      "<span class='message-loader js-loading spinner-border'></span>" +
+      "</div>" +
+      "</div>" +
+      "\n"
+  );
+}
+
+
 
 $(document).ready(function(){  
     $('#prompt').keypress(function(event){        
