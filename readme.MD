@@ -12,7 +12,7 @@ Contextual Discussion ollamagoweb effortlessly responds to questions, such as "W
 
 **Conversation Management**: 
 
-For each round of dialogue, users can conveniently delete the conversation by clicking the button in the upper-right corner, ensuring a clutter-free interface.
+For each round of dialogue, users can easily delete the dialogue by clicking the button in the upper right corner to ensure that llm's ideas are logically coherent during the dialogue.
 
 **Conversation saved**: 
 
