@@ -95,7 +95,7 @@ async function runScript(prompt, inputId) {
 
 //Create output container  创建输出容器
 function createOutputContainer(outputId) {
-  return "<button class='delete-button' data-output-id='" + outputId + "'>X</button>" +
+  return "<button class='delete-button' style='display: none;' data-output-id='" + outputId + "'>X</button>" +
       "<div class='px-3 py-3'>" +
       "<div id='" + outputId +
       "' style='white-space: pre-wrap;'>" +
@@ -115,7 +115,10 @@ function getConversationText() {
 
 // Generate new prompt text 生成新提示文本
 function generateNewPrompt(prompt, conversationText) {
-  return `Please answer based on the conversation context and the order of the questions:\n ${conversationText}\n Answer the question: ${prompt},\n If relevant to the context, respond accordingly; otherwise, answer based on the question content only.`;
+  return `Please answer based on the conversation context and the order of the questions:\n ${conversationText}\n 
+  Answer the question: ${prompt},\n 
+  If relevant to the context, respond accordingly, 
+  otherwise, answer based on the question content only.`;
 }
 
 // Send request and get response 发送请求并获取响应
@@ -147,6 +150,8 @@ function formatOutput(outputId) {
   $("#" + outputId).html(converter.makeHtml($("#" + outputId).html()));
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   hljs.highlightAll();
+  // 显示删除按钮
+  $("#" + outputId).closest('.px-3.py-3').prev('.delete-button').show();
 }
 
 //  Save conversation history 保存对话历史
