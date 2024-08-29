@@ -115,10 +115,12 @@ function getConversationText() {
 
 // Generate new prompt text 生成新提示文本
 function generateNewPrompt(prompt, conversationText) {
-  return `Please answer based on the conversation context and the order of the questions:\n ${conversationText}\n 
-  Answer the question: ${prompt},\n 
-  If relevant to the context, respond accordingly, 
-  otherwise, answer based on the question content only.`;
+  return conversationHistory.length > 0 ? 
+    `Please answer based on the conversation context and the order of the questions:\n ${conversationText}\n 
+     Answer the question: ${prompt},\n 
+     If relevant to the context, respond accordingly; 
+     otherwise, answer based on the question content only.` 
+  : `${prompt}`;
 }
 
 // Send request and get response 发送请求并获取响应
