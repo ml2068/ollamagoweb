@@ -14,7 +14,7 @@ function send(e){
     window.scrollTo({top: document.body.scrollHeight, behavior:'smooth' });
     runScript(prompt,inputId);          
     $(".js-logo").addClass("active");
-};
+}
 
 function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
