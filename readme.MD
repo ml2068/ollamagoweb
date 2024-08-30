@@ -1,3 +1,17 @@
+<h3 align="center">
+  <img
+    src="https://github.com/ml2068/ollamagoweb/blob/main/static/logo.png"
+    height="200"
+  >
+</h3>
+<div align="center">
+    <a href="https://github.com/ml2068/ollamagoweb/blob/main/LICENSE">
+  <img src="https://img.shields.io/github/license/ml2068/ollamagoweb" alt="License">
+<a href="https://github.com/ml2068/ollamagoweb">
+  <img src="https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github" alt="Open Source">
+</a>
+</div>
+
 # Introduction
 
 ollamagoweb, a simple ChatGPT clone built in Go that leverages Llama-compatible LLM via the ollama service. This innovative tool provides a seamless conversation experience and features:
