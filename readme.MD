@@ -5,8 +5,18 @@
   >
 </h3>
 <div align="center">
-    <a href="https://github.com/ml2068/ollamagoweb/blob/main/LICENSE">
+<a href="https://github.com/ml2068/ollamagoweb/blob/main/LICENSE">
   <img src="https://img.shields.io/github/license/ml2068/ollamagoweb" alt="License">
+</a>
+<a href="https://github.com/ml2068/ollamagoweb/stargazers">
+  <img src="https://img.shields.io/github/stars/ml2068/ollamagoweb.svg" alt="GitHub Contributors">
+</a>
+<a href="https://github.com/ml2068/ollamagoweb/forks">
+  <img src="https://img.shields.io/github/forks/ml2068/ollamagoweb.svg" alt="GitHub Contributors">
+</a>
+<a href="https://github.com/ml2068/ollamagoweb/graphs/contributors">
+  <img src="https://img.shields.io/github/contributors/ml2068/ollamagoweb.svg" alt="GitHub Contributors">
+</a>
 <a href="https://github.com/ml2068/ollamagoweb">
   <img src="https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github" alt="Open Source">
 </a>
