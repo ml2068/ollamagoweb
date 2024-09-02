@@ -115,6 +115,8 @@ func run(w http.ResponseWriter, r *http.Request) {
 	opts := []llms.CallOption{
 	        llms.WithMaxTokens(4069),
 	        llms.WithTemperature(0.5),
+	        llms.WithTopP(0.8),
+	        llms.WithTopK(10),
     	}
 	resp, err := llm.GenerateContent(context.Background(),[]llms.MessageContent{msg}, opts...)
 	if err != nil {
