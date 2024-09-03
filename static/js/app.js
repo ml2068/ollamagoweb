@@ -2,7 +2,6 @@ var converter = new showdown.Converter();
 const conversationHistory = [];
 let currentConversationId = 0;
 
-
 function send(e){
     e.preventDefault();
     var prompt = $("#prompt").val().trimEnd();
@@ -38,8 +37,6 @@ function appendPrintout(inputId, format_prompt) {
       "\n"
   );
 }
-
-
 
 $(document).ready(function(){  
     $('#prompt').keypress(function(event){        
@@ -159,7 +156,6 @@ function formatOutput(outputId) {
 //  Save conversation history 保存对话历史
 function saveConversationHistory(inputId, outputId, prompt, outputContent) {
     const MAX_CONVERSATIONS = 10; //how many round conversation to save
-    const MAX_CONVERSATION_LENGTH = 6656; //max lenght of conversation history
     var conversation = {
       id: currentConversationId,
       inputId: inputId,
@@ -167,12 +163,6 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
       inputContent: prompt,
       outputContent: outputContent
     };
-  
-  //  Conversation length limited to 6656 characters 对话长度限定在6656字符
-    if (conversation.inputContent.length + conversation.outputContent.length > MAX_CONVERSATION_LENGTH) {
-      conversation.inputContent = conversation.inputContent.substring(0, MAX_CONVERSATION_LENGTH / 4);
-      conversation.outputContent = conversation.outputContent.substring(0, MAX_CONVERSATION_LENGTH / 4);
-    }
   
     conversationHistory.push(conversation);
     currentConversationId++;
