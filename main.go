@@ -67,9 +67,14 @@ func getContextLength(client *api.Client) int {
     if err != nil {
         log.Println(err)
     }
-    var num = model.ModelInfo["llama.context_length"].(float64)
-    clen := math.Min(8192, math.Max(num, 0))
-    return int(clen)
+    for k, v := range model.ModelInfo {
+        if strings.HasSuffix(k, ".context_length") {
+            if clen, ok := v.(float64); ok {
+                return int(math.Min(8192, math.Max(clen, 0)))
+            }
+        }
+    }
+    return 4069
 }
 
 //get Option Setting function
