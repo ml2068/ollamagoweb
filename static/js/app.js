@@ -79,6 +79,7 @@ function deleteConversationHistory(inputId, outputId) {
 // Main function 主函数
 async function runScript(prompt, inputId) {
   var outputId = uuidv4();
+  outputIdToInputIdMap.set(outputId, inputId);
   $("#printout").append(createOutputContainer(outputId));
   var conversationText = getConversationText();
   var newPrompt = generateNewPrompt(prompt, conversationText);
