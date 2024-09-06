@@ -1,6 +1,7 @@
 var converter = new showdown.Converter();
 const conversationHistory = [];
 let currentConversationId = 0;
+const outputIdToInputIdMap = new Map();
 
 function send(e){
     e.preventDefault();
@@ -49,7 +50,7 @@ $(document).ready(function(){
     autosize($('#prompt'));
     $(document).on('click', '.delete-button', function() {
         var outputId = $(this).attr('data-output-id');
-        var inputId = getInputIdByOutputId(outputId);
+        var inputId = outputIdToInputIdMap.get(outputId);
         deleteConversationHistory(inputId, outputId);
     });  
 });
@@ -58,17 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
   updateProgressBar();
 });
 
-// 根据 outputId 获取 inputId
-function getInputIdByOutputId(outputId) {
-  for (var i = 0; i < conversationHistory.length; i++) {
-    if (conversationHistory[i].outputId === outputId) {
-      return conversationHistory[i].inputId;
-    }
-  }
-  return null;
-}
-
 function deleteConversationHistory(inputId, outputId) {
+  $('#' + inputId).closest('.px-3.py-3').remove(); // Remove the input container element
+  $('#' + outputId).closest('.px-3.py-3').remove(); // Remove the output container element
+  $('[data-output-id="' + outputId + '"]').remove(); // Remove the delete button element
+  $('[data-input-id="' + inputId + '"]').remove();
+  $('#' + inputId).remove(); // Remove the input element
+  $('#' + outputId).remove(); // Remove the output element
   for (var i = 0; i < conversationHistory.length; i++) {
     if (conversationHistory[i].inputId === inputId && conversationHistory[i].outputId === outputId) {
       conversationHistory.splice(i, 1);
@@ -76,12 +73,7 @@ function deleteConversationHistory(inputId, outputId) {
       break;
     }
   }
-  $('#' + inputId).closest('.px-3.py-3').remove(); // Remove the input container element
-  $('#' + outputId).closest('.px-3.py-3').remove(); // Remove the output container element
-  $('[data-output-id="' + outputId + '"]').remove(); // Remove the delete button element
-  $('#' + inputId).remove(); // Remove the input element
-  $('#' + outputId).remove(); // Remove the output element
-
+  outputIdToInputIdMap.delete(outputId);
 }
 
 // Main function 主函数
@@ -92,8 +84,8 @@ async function runScript(prompt, inputId) {
   var newPrompt = generateNewPrompt(prompt, conversationText);
   var response = await fetchResponse(newPrompt);
   await handleResponse(response, outputId);
-  formatOutput(outputId);
   saveConversationHistory(inputId, outputId, prompt, $("#" + outputId).html());
+  formatOutput(outputId);
 }
 
 //Create output container  创建输出容器
@@ -175,12 +167,7 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
   
     // Only store ten rounds of conversation 只存储10轮对话
     if (conversationHistory.length > MAX_CONVERSATIONS) {
-      var oldestConversation = conversationHistory.shift();
-      $('#' + oldestConversation.inputId).closest('.px-3.py-3').remove(); // Remove the input container element
-      $('#' + oldestConversation.outputId).closest('.px-3.py-3').remove(); // Remove the output container element
-      $('[data-output-id="' + oldestConversation.outputId + '"]').remove(); // Remove the delete button element
-      $('#' + oldestConversation.inputId).remove(); // Remove the input element
-      $('#' + oldestConversation.outputId).remove(); // Remove the output element
+      conversationHistory.shift();
     }
     updateProgressBar();
 }
