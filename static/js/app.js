@@ -54,6 +54,10 @@ $(document).ready(function(){
     });  
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  updateProgressBar();
+});
+
 // 根据 outputId 获取 inputId
 function getInputIdByOutputId(outputId) {
   for (var i = 0; i < conversationHistory.length; i++) {
@@ -76,6 +80,7 @@ function deleteConversationHistory(inputId, outputId) {
   $('[data-output-id="' + outputId + '"]').remove(); // Remove the delete button element
   $('#' + inputId).remove(); // Remove the input element
   $('#' + outputId).remove(); // Remove the output element
+  updateProgressBar();
 }
 
 // Main function 主函数
@@ -171,6 +176,28 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
     if (conversationHistory.length > MAX_CONVERSATIONS) {
         conversationHistory.shift();
     }
+    updateProgressBar();
+}
+
+function updateProgressBar() {
+  const progressContainer = document.getElementById('progress-container');
+  const conversationCount = conversationHistory.length;
+  const maxConversations = 10; // 最多显示10个槽位
+
+  // 清空进度条容器
+  progressContainer.innerHTML = '';
+
+  // 创建槽位元素
+  for (let i = 0; i < maxConversations; i++) {
+      const slot = document.createElement('div');
+      slot.classList.add('progress-slot');
+
+      if (i < conversationCount) {
+          slot.classList.add('filled');
+      }
+
+      progressContainer.appendChild(slot);
+  }
 }
 
 document.getElementById("btnSave").addEventListener("click", () => {
