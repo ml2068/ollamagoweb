@@ -1,3 +1,4 @@
+const MAX_CONVERSATIONS = 7; //how many round conversation to send to llm
 var converter = new showdown.Converter();
 const conversationHistory = [];
 let currentConversationId = 0;
@@ -154,7 +155,6 @@ function formatOutput(outputId) {
 
 //  Save conversation history 保存对话历史
 function saveConversationHistory(inputId, outputId, prompt, outputContent) {
-    const MAX_CONVERSATIONS = 10; //how many round conversation to save
     var conversation = {
       id: currentConversationId,
       inputId: inputId,
@@ -176,13 +176,11 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
 function updateProgressBar() {
   const progressContainer = document.getElementById('progress-container');
   const conversationCount = conversationHistory.length;
-  const maxConversations = 10; // 最多显示10个槽位
-
   // 清空进度条容器
   progressContainer.innerHTML = '';
 
   // 创建槽位元素
-  for (let i = 0; i < maxConversations; i++) {
+  for (let i = 0; i < MAX_CONVERSATIONS; i++) {
       const slot = document.createElement('div');
       slot.classList.add('progress-slot');
 
