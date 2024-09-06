@@ -76,6 +76,7 @@ func main() {
 // index
 func index(w http.ResponseWriter, r *http.Request) {
 	llm := os.Getenv("llm")
+	w.Header().Set("X-Content-Type-Options", "nosniff")
 	t, _ := template.ParseFiles("static/index.html")
 	err := t.Execute(w, map[string]string{"llm":llm})  
     	if err != nil {
