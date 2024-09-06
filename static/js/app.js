@@ -1,4 +1,4 @@
-const MAX_CONVERSATIONS = 7; //how many round conversation to send to llm
+const MAX_CONVERSATIONS = 3; //how many round conversation to send to llm
 var converter = new showdown.Converter();
 const conversationHistory = [];
 let currentConversationId = 0;
