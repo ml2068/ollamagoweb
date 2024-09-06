@@ -44,6 +44,7 @@ func main() {
 // index.html
 func index(w http.ResponseWriter, r *http.Request) {
 	llm := os.Getenv("llm")
+	w.Header().Set("X-Content-Type-Options", "nosniff")
 	ollamaversion, _ :=client.Version(context.Background())
 	clen :=getContextLength(client)
 	t, _ := template.ParseFiles("static/index.html")
