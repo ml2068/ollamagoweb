@@ -175,7 +175,12 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
   
     // Only store ten rounds of conversation 只存储10轮对话
     if (conversationHistory.length > MAX_CONVERSATIONS) {
-        conversationHistory.shift();
+      var oldestConversation = conversationHistory.shift();
+      $('#' + oldestConversation.inputId).closest('.px-3.py-3').remove(); // Remove the input container element
+      $('#' + oldestConversation.outputId).closest('.px-3.py-3').remove(); // Remove the output container element
+      $('[data-output-id="' + oldestConversation.outputId + '"]').remove(); // Remove the delete button element
+      $('#' + oldestConversation.inputId).remove(); // Remove the input element
+      $('#' + oldestConversation.outputId).remove(); // Remove the output element
     }
     updateProgressBar();
 }
