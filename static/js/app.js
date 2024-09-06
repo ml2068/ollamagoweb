@@ -72,6 +72,7 @@ function deleteConversationHistory(inputId, outputId) {
   for (var i = 0; i < conversationHistory.length; i++) {
     if (conversationHistory[i].inputId === inputId && conversationHistory[i].outputId === outputId) {
       conversationHistory.splice(i, 1);
+      updateProgressBar();
       break;
     }
   }
@@ -80,7 +81,7 @@ function deleteConversationHistory(inputId, outputId) {
   $('[data-output-id="' + outputId + '"]').remove(); // Remove the delete button element
   $('#' + inputId).remove(); // Remove the input element
   $('#' + outputId).remove(); // Remove the output element
-  updateProgressBar();
+
 }
 
 // Main function 主函数
@@ -172,7 +173,7 @@ function saveConversationHistory(inputId, outputId, prompt, outputContent) {
     conversationHistory.push(conversation);
     currentConversationId++;
   
-    // Only store three rounds of conversation 只存储三轮对话
+    // Only store ten rounds of conversation 只存储10轮对话
     if (conversationHistory.length > MAX_CONVERSATIONS) {
         conversationHistory.shift();
     }
