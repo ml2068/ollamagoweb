@@ -142,3 +142,22 @@ textarea.form-control {
   margin-right: 10px;
 }
 
+.progress-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-slot {
+  width: 10px;
+  height: 10px;
+  margin: 2px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.progress-slot.filled {
+  background-color: #43cc55;
+}
