@@ -120,6 +120,20 @@ Setting the port and llm tag by edit the .env file
 
 Get Groq free api-key from https://www.groq.com
 
+# deepinfra
+
+Get deepinfra api-key from https://deepinfra.com/
+
+.env format:
+
+`PORT=1102`
+
+`llm=meta-llama/Meta-Llama-3.1-405B-Instruct`
+
+`baseUrl=https://api.deepinfra.com/v1/openai`
+
+`apiKey=JZxxxxxxxxxxxxxxxxxxxxxwHrK`
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=ml2068/ollamagoweb&type=Date)](https://star-history.com/#ml2068/ollamagoweb&Date)
