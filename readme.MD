@@ -116,7 +116,7 @@ Setting the port and llm tag by edit the .env file
 
 `go run main.go`
 
-# Groq
+4. api-key
 
 Get Groq free api-key from https://www.groq.com
 
