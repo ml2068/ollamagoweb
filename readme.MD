@@ -120,7 +120,7 @@ Setting the port and llm tag by edit the .env file
 
 Get Groq free api-key from https://www.groq.com
 
-# deepinfra
+# deepinfra  support
 
 Get deepinfra api-key from https://deepinfra.com/
 
