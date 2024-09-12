@@ -59,35 +59,29 @@ Here are some screenshots.
 Download various LLM models from https://www.ollama.com
 
 # Git Clone
-
 ```
 git clone https://github.com/ml2068/ollamagoweb.git
 cd ollamagoweb
 go mod tidy
 ```
-
 # edit .env 
 
 Setting the port and llm tag by edit the .env file
-
 ```
 vim .env
 PORT=1102
 llm=llama3.1:8b
 ```
-
 # run the servcie
 
 `go run main.go`
 
 # build the .exe
-
 ```
 cd ollamagoweb
 go build main.go
 ./main
 ```
-
 # Groq support
 
 <img src="GroqGoWeb/groqfast.png" alt="Groq go fast" width="60%"/>
@@ -99,7 +93,6 @@ go build main.go
 ./static/logo.png
 ./static/favicon.ico
 ```
-
 2. edit the .env file:
 ```
 PORT=1102
