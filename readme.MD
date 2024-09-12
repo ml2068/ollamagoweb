@@ -72,9 +72,7 @@ Setting the port and llm tag by edit the .env file
 
 ```
 vim .env
-
 PORT=1102
-
 llm=llama3.1:8b
 ```
 
@@ -86,9 +84,7 @@ llm=llama3.1:8b
 
 ```
 cd ollamagoweb
-
 go build main.go
-
 ./main
 ```
 
@@ -99,22 +95,16 @@ go build main.go
 1. replace file from GroqGoWeb as below:
 ```
 ./main.go
-
 ./.env
-
 ./static/logo.png
-
 ./static/favicon.ico
 ```
 
 2. edit the .env file:
 ```
 PORT=1102
-
 llm=llama3-8b-8192
-
 baseUrl=https://api.groq.com/openai/v1
-
 apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H
 ```
 3. go run 
@@ -132,11 +122,8 @@ Get deepinfra api-key from https://deepinfra.com/
 .env format:
 ```
 PORT=1102
-
 llm=meta-llama/Meta-Llama-3.1-405B-Instruct
-
 baseUrl=https://api.deepinfra.com/v1/openai
-
 apiKey=JZxxxxxxxxxxxxxxxxxxxxxwHrK
 ```
 ## Star History
