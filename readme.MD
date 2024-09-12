@@ -59,11 +59,15 @@ Here are some screenshots.
 Download various LLM models from https://www.ollama.com
 
 # Git Clone
-```git clone https://github.com/ml2068/ollamagoweb.git
+
+```
+git clone https://github.com/ml2068/ollamagoweb.git
 
 cd ollamagoweb
 
-go mod tidy```
+go mod tidy
+
+```
 
 # edit .env 
 
