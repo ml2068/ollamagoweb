@@ -66,18 +66,19 @@ git clone https://github.com/ml2068/ollamagoweb.git
 cd ollamagoweb
 
 go mod tidy
-
 ```
 
 # edit .env 
 
 Setting the port and llm tag by edit the .env file
 
-`vim .env`
+```
+vim .env
 
-`PORT=1102`
+PORT=1102
 
-`llm=llama3.1:8b`
+llm=llama3.1:8b
+```
 
 # run the servcie
 
