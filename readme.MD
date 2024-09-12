@@ -86,36 +86,39 @@ llm=llama3.1:8b
 
 # build the .exe
 
-`cd ollamagoweb`
+```
+cd ollamagoweb
 
-`go build main.go`
+go build main.go
 
-`./main`
+./main
+```
 
 # Groq support
 
 <img src="GroqGoWeb/groqfast.png" alt="Groq go fast" width="60%"/>
 
 1. replace file from GroqGoWeb as below:
+```
+./main.go
 
-`./main.go`
+./.env
 
-`./.env`
+./static/logo.png
 
-`./static/logo.png`
-
-`./static/favicon.ico`
+./static/favicon.ico
+```
 
 2. edit the .env file:
+```
+PORT=1102
 
-`PORT=1102`
+llm=llama3-8b-8192
 
-`llm=llama3-8b-8192`
+baseUrl=https://api.groq.com/openai/v1
 
-`baseUrl=https://api.groq.com/openai/v1`
-
-`apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H`
-
+apiKey=gsk_rmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0H
+```
 3. go run 
 
 `go run main.go`
@@ -129,15 +132,15 @@ Get Groq free api-key from https://www.groq.com
 Get deepinfra api-key from https://deepinfra.com/
 
 .env format:
+```
+PORT=1102
 
-`PORT=1102`
+llm=meta-llama/Meta-Llama-3.1-405B-Instruct
 
-`llm=meta-llama/Meta-Llama-3.1-405B-Instruct`
+baseUrl=https://api.deepinfra.com/v1/openai
 
-`baseUrl=https://api.deepinfra.com/v1/openai`
-
-`apiKey=JZxxxxxxxxxxxxxxxxxxxxxwHrK`
-
+apiKey=JZxxxxxxxxxxxxxxxxxxxxxwHrK
+```
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=ml2068/ollamagoweb&type=Date)](https://star-history.com/#ml2068/ollamagoweb&Date)
