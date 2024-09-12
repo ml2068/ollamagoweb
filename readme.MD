@@ -1,6 +1,6 @@
 <h3 align="center">
   <img
-    src="https://github.com/ml2068/ollamagoweb/static/logo.png"
+    src="https://github.com/ml2068/ollamagoweb/blob/main/static/logo.png"
     height="200"
   >
 </h3>
