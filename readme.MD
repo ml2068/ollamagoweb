@@ -62,9 +62,7 @@ Download various LLM models from https://www.ollama.com
 
 ```
 git clone https://github.com/ml2068/ollamagoweb.git
-
 cd ollamagoweb
-
 go mod tidy
 ```
 
