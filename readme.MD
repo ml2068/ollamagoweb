@@ -119,6 +119,18 @@ llm=meta-llama/Meta-Llama-3.1-405B-Instruct
 baseUrl=https://api.deepinfra.com/v1/openai
 apiKey=JZxxxxxxxxxxxxxxxxxxxxxwHrK
 ```
+# Openrouter  support
+
+Get deepinfra api-key from https://openrouter.ai/
+
+.env format:
+```
+PORT=1102
+baseUrl=https://openrouter.ai/api/v1
+apiKey=sk-or-v1-ed3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx00d
+llm=meta-llama/llama-3.1-70b-instruct:free
+```
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=ml2068/ollamagoweb&type=Date)](https://star-history.com/#ml2068/ollamagoweb&Date)
