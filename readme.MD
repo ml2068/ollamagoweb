@@ -121,7 +121,7 @@ apiKey=JZxxxxxxxxxxxxxxxxxxxxxwHrK
 ```
 # Openrouter  support
 
-Get deepinfra api-key from https://openrouter.ai/
+Get Openrouter api-key from https://openrouter.ai/
 
 .env format:
 ```
