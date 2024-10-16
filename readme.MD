@@ -126,9 +126,9 @@ Get Openrouter api-key from https://openrouter.ai/
 .env format:
 ```
 PORT=1102
+llm=meta-llama/llama-3.1-70b-instruct:free
 baseUrl=https://openrouter.ai/api/v1
 apiKey=sk-or-v1-ed3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx00d
-llm=meta-llama/llama-3.1-70b-instruct:free
 ```
 
 ## Star History
