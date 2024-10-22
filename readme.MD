@@ -24,7 +24,7 @@
 
 # Introduction
 
-ollamagoweb, a simple ChatGPT clone built in Go that leverages Llama-compatible LLM via the ollama service. This innovative tool provides a seamless conversation experience and features:
+ollamagoweb, a simple llm client built in Go that leverages Llama-compatible LLM via the ollama service. This innovative tool provides a seamless conversation experience and features:
 
 **Simple interface**: 
 
