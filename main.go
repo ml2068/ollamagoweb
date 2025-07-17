@@ -73,7 +73,7 @@ func getContextLength(client *api.Client) int {
     for k, v := range model.ModelInfo {
         if strings.HasSuffix(k, ".context_length") {
             if clen, ok := v.(float64); ok {
-                return int(math.Min(8192, math.Max(clen, 0)))
+                return int(clen)
             }
         }
     }
