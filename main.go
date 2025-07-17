@@ -38,6 +38,7 @@ func main() {
 	r.Post("/run", run)
 	log.Println("\033[93mOllama go web serve started. Press CTRL+C to quit.\033[0m")
 	log.Println("Local URL: http://localhost:"+os.Getenv("PORT"))
+	log.Println("LLM load : "+os.Getenv("llm"))
 	http.ListenAndServe(":"+os.Getenv("PORT"), r)
 }
 
