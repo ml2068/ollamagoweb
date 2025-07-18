@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"math"
 	"strings"
 	"text/template"
 	"github.com/go-chi/chi"
